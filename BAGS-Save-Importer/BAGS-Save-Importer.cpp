@@ -84,7 +84,7 @@ int main(void)
 
 	if (BagsSaveImporter::BagsFiles::SlotDataFiles.size() == 0 || BagsSaveImporter::BagsFiles::FoundSlotDataOriginal == false)
 	{
-		std::wcout << "Could not find save files or SlotDataOriginal.dat" << std::endl;
+		std::wcout << L"Could not find save files or SlotDataOriginal.dat" << std::endl;
 		return 1;
 	}
 
@@ -97,7 +97,7 @@ int main(void)
 		std::ofstream slotDataStream = std::ofstream(fs::absolute(e).wstring(), std::ios::binary | std::ios::in || std::ios::out);
 		if (!BagsSaveImporter::BagsHeader::WriteHeaderToFile(slotDataStream, header))
 		{
-			std::wcout << "Failed to write new header to file" << std::endl;
+			std::wcout << L"Failed to write new header to file" << std::endl;
 			slotDataStream.close();
 			return 2;
 		}
@@ -106,7 +106,7 @@ int main(void)
 		std::fstream slotDataVerifyStream = std::fstream(fs::absolute(e).wstring(), std::ios::binary || std::ios::in);
 		if (!BagsSaveImporter::BagsHeader::VerifyHeaderIsSame(slotDataVerifyStream, header))
 		{
-			std::wcout << "Failed to verify new header on file" << std::endl;
+			std::wcout << L"Failed to verify new header on file" << std::endl;
 			slotDataStream.close();
 			return 3;
 		}
@@ -134,7 +134,7 @@ int main(void)
 		}
 	}
 
-	std::wcout << L"Done! I processed " << BagsSaveImporter::BagsFiles::SlotDataFiles.size() << " files." << std::endl;
+	std::wcout << L"Done! I processed " << BagsSaveImporter::BagsFiles::SlotDataFiles.size() << L" files." << std::endl;
 	std::wcout << L"Place files in one of the three folders below with the same name as the file inside of it." << std::endl;
 	std::wcout << L"Path: " << wss.str() << std::endl;
 	std::wcout << L"Save folders inside: " << std::endl;
@@ -151,7 +151,7 @@ int main(void)
 	delete[] header;
 
 
-	std::cout << "\n\n\n\nPress any key to continue...";
+	std::wcout << L"\n\n\n\nPress any key to continue...";
 	std::cin.get();
 
 	return 0;
